@@ -30,7 +30,8 @@ RUN useradd -U -m superset && \
         libsasl2-dev \
         libssl-dev \
         python3-dev \
-        python3-pip && \
+        python3-pip \
+        git && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
     curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
@@ -51,7 +52,7 @@ RUN useradd -U -m superset && \
         pyldap==2.4.28 \
         redis==2.10.5 \
         sqlalchemy-redshift==0.5.0 \
-        sqlalchemy-clickhouse==0.1.3.post0 \
+        git+https://github.com/JustOnce/sqlalchemy-clickhouse \
         sqlalchemy-redshift==0.5.0 \
         superset==${SUPERSET_VERSION} && \
     rm requirements.txt
