@@ -1,6 +1,37 @@
 # Superset
 
+[![latest](https://github.com/amancevice/docker-superset/workflows/latest/badge.svg)](https://github.com/amancevice/docker-superset/actions)
+[![edge](https://github.com/amancevice/docker-superset/workflows/edge/badge.svg)](https://github.com/amancevice/docker-superset/actions)
+
 Docker image for [Superset](https://github.com/ApacheInfra/superset).
+
+This project is unofficial and not related to Superset or Apache.
+
+## Download
+
+Download this image from the Docker registry:
+
+```bash
+docker pull amancevice/superset:<version>
+```
+
+## Building
+
+*I do not recommend building this image on your own. Instead, try pulling a tag from the Docker registry.*
+
+If you insist on building an image from the source, use the `make` to supervise the build.
+
+```bash
+make [ SUPERSET_VERSION=<version> ]
+```
+
+## Issues
+
+Please **only** file issues in this project that are related to Docker and **do** include the Docker commands or compose configuration of your setup when filing issues (be sure to hide any secrets/passwords before submitting).
+
+File issues/bugs with Superset at the [source](https://github.com/apache/incubator-superset/issues).
+
+Please **do not** files issues like "Please include `<some-python-pip>` in the Dockerfile," open a [pull request](https://github.com/amancevice/superset/pulls) for updates/enhancements.
 
 
 ## Examples
@@ -37,7 +68,6 @@ docker run --detach --name superset [options] amancevice/superset
 docker exec -it superset superset-init
 ```
 
-
 ## Upgrading
 
 Upgrading to a newer version of superset can be accomplished by re-pulling `amancevice/superset`at a specified superset version or `latest` (see above for more on this). Remove the old container and re-deploy, making sure to use the correct environmental configuration. Finally, ensure the superset database is migrated up to the head:
@@ -54,4 +84,7 @@ docker run --detach --name superset-new [options] amancevice/superset
 
 # Upgrade the DB
 docker exec superset-new superset db upgrade
+
+# Sync the base permissions
+docker exec superset-new superset init
 ```
